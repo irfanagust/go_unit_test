@@ -35,13 +35,13 @@ func TestSkip(t *testing.T) {
 	require.Equal(t, "Hello Irfan", result)
 }
 
-func TestMain(m *testing.M) {
-	fmt.Println("Sebelum unit test dijalankan")
+// func TestMain(m *testing.M) {
+// 	fmt.Println("Sebelum unit test dijalankan")
 
-	m.Run()
+// 	m.Run()
 
-	fmt.Println("Sesudah unit test dijalankan")
-}
+// 	fmt.Println("Sesudah unit test dijalankan")
+// }
 
 func TestSubTest(t *testing.T) {
 	t.Run("subtest_1", func(t *testing.T) {
@@ -55,4 +55,31 @@ func TestSubTest(t *testing.T) {
 
 		require.Equal(t, "Hello Awk", result)
 	})
+}
+
+func TestTableTesting(t *testing.T) {
+	tests := []struct {
+		name     string
+		request  string
+		expected string
+	}{
+		{
+			name:     "Irfan",
+			request:  "Irfan",
+			expected: "Hello Irfan",
+		},
+
+		{
+			name:     "Tiawan",
+			request:  "Tiawan",
+			expected: "Hello Tiawan",
+		},
+	}
+
+	for _, test := range tests {
+		t.Run(test.name, func(t *testing.T) {
+			result := HelloWorld(test.request)
+			require.Equal(t, test.expected, result)
+		})
+	}
 }
